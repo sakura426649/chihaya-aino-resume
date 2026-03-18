@@ -11,6 +11,7 @@ A responsive, mobile-first resume webpage for Chihaya Aino, the guitarist from M
   - Hover effects on cards and social links
   - Ripple effect on social media buttons
   - Animated avatar border
+  - **Background music player** with auto-play feature (春日影 - MyGo!!!!!)
 - **Modern CSS techniques**:
   - CSS Variables for theming
   - Flexbox and CSS Grid layouts
@@ -23,11 +24,20 @@ A responsive, mobile-first resume webpage for Chihaya Aino, the guitarist from M
 
 ## Files
 
-- `index.html` - Main HTML structure
-- `style.css` - All styling with responsive design
-- `script.js` - Interactive functionality
-- `anon.png` - Character avatar image
-- `README.md` - This file
+```
+chihaya-aino-resume/
+├── assets/
+│   ├── anon.png           # Character avatar image
+│   └── 春日影.mp3          # Background music (Haruhi Kage - MyGo!!!!!)
+├── index.html            # Main HTML structure
+├── style.css             # All styling with responsive design
+├── script.js             # Interactive functionality (incl. music player)
+├── deploy.bat            # Windows deployment script
+├── deploy.sh             # Linux/Mac deployment script
+├── README.md             # This file
+└── .github/workflows/
+    └── deploy.yml        # GitHub Actions workflow for Pages
+```
 
 ## How to View
 

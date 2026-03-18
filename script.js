@@ -136,6 +136,113 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%c🎸 Chihaya Aino Resume', 'color: #ff6b9d; font-size: 16px; font-weight: bold;');
     console.log('%cThanks for checking out my resume page!', 'color: #6a5acd;');
 
+    // Music Player Functionality
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const musicStatus = document.querySelector('.music-status');
+    const musicPlayer = document.querySelector('.music-player');
+
+    if (backgroundMusic && musicToggle) {
+        // Set initial volume
+        backgroundMusic.volume = volumeSlider.value / 100;
+
+        // Volume control
+        volumeSlider.addEventListener('input', function() {
+            backgroundMusic.volume = this.value / 100;
+            updateVolumeIcon(this.value);
+        });
+
+        function updateVolumeIcon(volume) {
+            const icon = document.querySelector('.volume-control i');
+            if (volume == 0) {
+                icon.className = 'fas fa-volume-mute';
+            } else if (volume < 50) {
+                icon.className = 'fas fa-volume-down';
+            } else {
+                icon.className = 'fas fa-volume-up';
+            }
+        }
+
+        // Toggle play/pause
+        musicToggle.addEventListener('click', function() {
+            if (backgroundMusic.paused) {
+                playMusic();
+            } else {
+                pauseMusic();
+            }
+        });
+
+        function playMusic() {
+            backgroundMusic.play()
+                .then(() => {
+                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                    musicStatus.textContent = 'Now Playing';
+                    musicPlayer.classList.add('music-playing');
+                    console.log('🎵 Music started playing');
+                })
+                .catch(error => {
+                    console.warn('Autoplay failed:', error);
+                    musicStatus.textContent = 'Click to play';
+                    // Show a message to the user
+                    alert('Please click the play button to start the music. Some browsers require user interaction.');
+                });
+        }
+
+        function pauseMusic() {
+            backgroundMusic.pause();
+            musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+            musicStatus.textContent = 'Paused';
+            musicPlayer.classList.remove('music-playing');
+        }
+
+        // Update status when music ends
+        backgroundMusic.addEventListener('ended', function() {
+            musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+            musicStatus.textContent = 'Click to play';
+            musicPlayer.classList.remove('music-playing');
+        });
+
+        // Update status based on playback
+        backgroundMusic.addEventListener('play', function() {
+            musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+            musicStatus.textContent = 'Now Playing';
+            musicPlayer.classList.add('music-playing');
+        });
+
+        backgroundMusic.addEventListener('pause', function() {
+            musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+            musicStatus.textContent = 'Paused';
+            musicPlayer.classList.remove('music-playing');
+        });
+
+        // Try to autoplay on page load
+        setTimeout(() => {
+            playMusic();
+        }, 1000);
+
+        // Also try autoplay on first user interaction
+        let userInteracted = false;
+        const tryAutoplayOnInteraction = function() {
+            if (!userInteracted && backgroundMusic.paused) {
+                userInteracted = true;
+                playMusic();
+                // Remove listeners after first interaction
+                document.removeEventListener('click', tryAutoplayOnInteraction);
+                document.removeEventListener('touchstart', tryAutoplayOnInteraction);
+                document.removeEventListener('keydown', tryAutoplayOnInteraction);
+            }
+        };
+
+        // Listen for user interaction
+        document.addEventListener('click', tryAutoplayOnInteraction);
+        document.addEventListener('touchstart', tryAutoplayOnInteraction);
+        document.addEventListener('keydown', tryAutoplayOnInteraction);
+
+        // Update volume icon initially
+        updateVolumeIcon(volumeSlider.value);
+    }
+
     // Handle window resize for responsive adjustments
     let resizeTimer;
     window.addEventListener('resize', function() {

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="anon.png">
+    <link rel="icon" type="image/x-icon" href="assets/anon.png">
 </head>
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
         <header class="header">
             <div class="profile-section">
                 <div class="avatar-container">
-                    <img src="anon.png" alt="Chihaya Aino" class="avatar">
+                    <img src="assets/anon.png" alt="Chihaya Aino" class="avatar">
                     <div class="avatar-border"></div>
                 </div>
                 <h1 class="name">Chihaya Aino</h1>
@@ -249,6 +249,27 @@
                 <i class="fas fa-moon"></i> Toggle Theme
             </button>
         </footer>
+
+        <!-- Music Player -->
+        <div class="music-player">
+            <audio id="backgroundMusic" loop>
+                <source src="assets/春日影.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="music-controls">
+                <button id="musicToggle" class="music-btn" aria-label="Toggle music">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="music-info">
+                    <div class="music-title">春日影 - MyGo!!!!!</div>
+                    <div class="music-status">Click to play</div>
+                </div>
+                <div class="volume-control">
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" aria-label="Volume">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
