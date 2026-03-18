@@ -184,8 +184,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => {
                     console.warn('Autoplay failed:', error);
                     musicStatus.textContent = 'Click to play';
-                    // Show a message to the user
-                    alert('Please click the play button to start the music. Some browsers require user interaction.');
+                    // Remove any autoplay attempt indicators
+                    musicPlayer.classList.remove('autoplay-failed');
+                    // Don't show alert, just update UI
                 });
         }
 
@@ -216,12 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
             musicPlayer.classList.remove('music-playing');
         });
 
-        // Try to autoplay on page load
-        setTimeout(() => {
-            playMusic();
-        }, 1000);
-
-        // Also try autoplay on first user interaction
+        // Try autoplay on first user interaction
         let userInteracted = false;
         const tryAutoplayOnInteraction = function() {
             if (!userInteracted && backgroundMusic.paused) {
@@ -234,10 +230,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        // Listen for user interaction
+        // Listen for user interaction to start music
         document.addEventListener('click', tryAutoplayOnInteraction);
         document.addEventListener('touchstart', tryAutoplayOnInteraction);
         document.addEventListener('keydown', tryAutoplayOnInteraction);
+
+        // Add visual hint for music autoplay
+        setTimeout(() => {
+            if (backgroundMusic.paused) {
+                musicPlayer.classList.add('autoplay-hint');
+                musicStatus.textContent = 'Click anywhere to play music';
+            }
+        }, 2000);
 
         // Update volume icon initially
         updateVolumeIcon(volumeSlider.value);
