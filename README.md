@@ -32,8 +32,6 @@ chihaya-aino-resume/
 ├── index.html            # Main HTML structure
 ├── style.css             # All styling with responsive design
 ├── script.js             # Interactive functionality (incl. music player)
-├── deploy.bat            # Windows deployment script
-├── deploy.sh             # Linux/Mac deployment script
 ├── README.md             # This file
 └── .github/workflows/
     └── deploy.yml        # GitHub Actions workflow for Pages
