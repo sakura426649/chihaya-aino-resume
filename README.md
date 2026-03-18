@@ -2,6 +2,8 @@
 
 A responsive, mobile-first resume webpage for Chihaya Aino, the guitarist from MyGo!!!!! (BanG Dream!).
 
+ [成品展示](https://sakura426649.github.io/chihaya-aino-resume/)
+
 ## Features
 
 - **Mobile-first responsive design**: Optimized for mobile devices with responsive breakpoints
