@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const icon = themeToggle.querySelector('i');
         if (isDark) {
             icon.className = 'fas fa-sun';
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i> Toggle Theme';
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i> 切换主题';
         } else {
             icon.className = 'fas fa-moon';
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i> Toggle Theme';
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i> 切换主题';
         }
     }
 
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Show a simple alert (in a real site, this would navigate)
             const platform = this.getAttribute('aria-label').toLowerCase();
-            alert(`This would link to Chihaya's ${platform} page (demo only)`);
+            alert(`这将链接到千早爱音的${platform}页面（仅演示）`);
         });
     });
 
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add a greeting in console
-    console.log('%c🎸 Chihaya Aino Resume', 'color: #ff6b9d; font-size: 16px; font-weight: bold;');
-    console.log('%cThanks for checking out my resume page!', 'color: #6a5acd;');
+    console.log('%c🎸 千早爱音个人简历', 'color: #ff6b9d; font-size: 16px; font-weight: bold;');
+    console.log('%c感谢查看我的个人简历页面！', 'color: #6a5acd;');
 
     // Music Player Functionality
     const backgroundMusic = document.getElementById('backgroundMusic');
@@ -177,13 +177,13 @@ document.addEventListener('DOMContentLoaded', function() {
             backgroundMusic.play()
                 .then(() => {
                     musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-                    musicStatus.textContent = 'Now Playing';
+                    musicStatus.textContent = '正在播放';
                     musicPlayer.classList.add('music-playing');
-                    console.log('🎵 Music started playing');
+                    console.log('🎵 音乐开始播放');
                 })
                 .catch(error => {
                     console.warn('Autoplay failed:', error);
-                    musicStatus.textContent = 'Click to play';
+                    musicStatus.textContent = '点击播放';
                     // Remove any autoplay attempt indicators
                     musicPlayer.classList.remove('autoplay-failed');
                     // Don't show alert, just update UI
@@ -193,27 +193,27 @@ document.addEventListener('DOMContentLoaded', function() {
         function pauseMusic() {
             backgroundMusic.pause();
             musicToggle.innerHTML = '<i class="fas fa-play"></i>';
-            musicStatus.textContent = 'Paused';
+            musicStatus.textContent = '已暂停';
             musicPlayer.classList.remove('music-playing');
         }
 
         // Update status when music ends
         backgroundMusic.addEventListener('ended', function() {
             musicToggle.innerHTML = '<i class="fas fa-play"></i>';
-            musicStatus.textContent = 'Click to play';
+            musicStatus.textContent = '点击播放';
             musicPlayer.classList.remove('music-playing');
         });
 
         // Update status based on playback
         backgroundMusic.addEventListener('play', function() {
             musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-            musicStatus.textContent = 'Now Playing';
+            musicStatus.textContent = '正在播放';
             musicPlayer.classList.add('music-playing');
         });
 
         backgroundMusic.addEventListener('pause', function() {
             musicToggle.innerHTML = '<i class="fas fa-play"></i>';
-            musicStatus.textContent = 'Paused';
+            musicStatus.textContent = '已暂停';
             musicPlayer.classList.remove('music-playing');
         });
 
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             if (backgroundMusic.paused) {
                 musicPlayer.classList.add('autoplay-hint');
-                musicStatus.textContent = 'Click anywhere to play music';
+                musicStatus.textContent = '点击任意位置播放音乐';
             }
         }, 2000);
 
