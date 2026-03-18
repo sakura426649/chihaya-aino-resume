@@ -43,6 +43,48 @@ A responsive, mobile-first resume webpage for Chihaya Aino, the guitarist from M
 - Font Awesome icons
 - Google Fonts (Poppins, Roboto)
 
+## Deploy to GitHub Pages
+
+This project is ready to be deployed to GitHub Pages for mobile access via URL.
+
+### Option 1: Manual Setup (Recommended)
+
+1. **Create a new GitHub repository**:
+   - Go to [GitHub](https://github.com/new)
+   - Name your repository (e.g., `chihaya-aino-resume`)
+   - Keep it public (required for GitHub Pages)
+   - Do NOT initialize with README, .gitignore, or license
+
+2. **Push to GitHub**:
+   ```bash
+   # Add remote (replace YOUR_USERNAME with your GitHub username)
+   git remote add origin https://github.com/YOUR_USERNAME/chihaya-aino-resume.git
+
+   # Push to GitHub
+   git branch -M main
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages**:
+   - Go to your repository on GitHub
+   - Click "Settings" → "Pages"
+   - Under "Source", select "GitHub Actions"
+   - The workflow will automatically deploy when you push to main
+
+4. **Access your site**:
+   - Your site will be available at: `https://YOUR_USERNAME.github.io/chihaya-aino-resume/`
+   - This link works on mobile devices
+
+### Option 2: Using GitHub CLI
+
+If you have GitHub CLI installed:
+```bash
+# Create repository
+gh repo create chihaya-aino-resume --public --source=. --remote=origin --push
+```
+
+The GitHub Actions workflow will automatically deploy your site to GitHub Pages.
+
 ## Browser Support
 
 Supports all modern browsers (Chrome 60+, Firefox 55+, Safari 12+, Edge 79+).
